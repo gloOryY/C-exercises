@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define size 7
+
+int main()
+{
+	srand(time(NULL));
+		
+    int m[size];
+    int max = 0;
+    int i;
+    int kol = 0;
+	
+	printf("Array: ");
+    for(i = 0; i < size; i++)
+    {
+        m[i] = rand()%100;
+        printf("%d ", m[i]);
+        if (m[i]%2==0)
+        {
+            if(m[i] > max)
+            {
+                max = m[i];
+            }
+        }
+        if ((m[i] % 2) != 0) {
+            kol++;
+        }
+    }
+    printf("\nMax = %d\nKoli4estvo = %d\n", max, kol);
+    return 0;
+}

@@ -1,0 +1,71 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+#define SIZE 10
+
+
+//функция для инициализации 
+void initM (double *p, int r)
+{
+    for (int i=0; i<r; i++)
+        for (int j=0; j<r; j++)
+            *(p+i*r+j)=rand()%201-100;
+            
+}
+
+//функция для печати 
+
+void printM (double *p, int r)
+{
+    for (int i=0; i<r; i++){
+        for (int j=0; j<r; j++)
+            cout<<*(p+i*r+j)<<'\t';
+        cout<<endl;
+    }
+}
+//функция подсчета нулей
+
+int f_zeros(double *p, int r){
+    int zeros = 0;
+    for (int i = 0; i < r/2; i++) {
+        for (int j = i; j < r - i; j++) {
+            if (*(p+i*r+j) == 0) {
+                zeros++;
+            }
+        }
+    }
+    return zeros;
+}
+
+//функция подсчета положительных эл
+int f_pluses(double *p, int r){
+    int pluses = 0;
+    for (int i = 5; i < r; i++) {
+        for (int j = r - i - 1; j <= i; j++) {
+            if (*(p+i*r+j) > 0) {
+                pluses++;
+            }
+        }
+    }
+    return pluses;
+}
+    
+
+
+int main(){
+    setlocale(LC_ALL,"Rus");
+    srand (time(0));
+    cout << "Matrix M["<< SIZE<< "][" << SIZE << "]:" << endl;
+    double M[SIZE*SIZE];
+    double array[SIZE];
+    
+    initM(M, SIZE);
+    cout<<"Исходная матрица1:"<<endl;
+    printM(M, SIZE);
+    cout << "ZEROS: " << f_zeros (M, SIZE) << endl << "PLUSES: " << f_pluses(M, SIZE) << endl;
+    
+    system ("pause");
+    return 0;
+}

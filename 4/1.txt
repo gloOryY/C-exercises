@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib> // Для генерации случайных чисел
+
+int* findMaxPosition(int* arr, int size) {
+    int* maxPtr = arr;
+    for (int i = 1; i < size; ++i) {
+        if (*arr < *(arr + i)) {
+            maxPtr = arr + i;
+        }
+    }
+    return maxPtr;
+}
+
+int main() {
+    const int N1 = 10;
+    const int N2 = 10;
+    
+    // Создаем и инициализируем случайные массивы A и B
+    int A[N1];
+    int B[N2];
+    for (int i = 0; i < N1; ++i) {
+        A[i] = rand()%201 - 100 / (int)RAND_MAX; // Генерируем случайное число 
+    }
+    for (int i = 0; i < N2; ++i) {
+        B[i] = rand()%201 - 100 / (int)RAND_MAX;
+    }
+    
+    // Находим максимумы в обоих массивах
+    int* maxPtrA = findMaxPosition(A, N1);
+    int* maxPtrB = findMaxPosition(B, N2);
+    
+    // Определяем суммы элементов второй части массивов
+    int sumA = 0;
+    for (int* p = maxPtrA + 1; p < A + N1; ++p) {
+        sumA += *p;
+    }
+    int sumB = 0;
+    for (int* p = maxPtrB + 1; p < B + N2; ++p) {
+        sumB += *p;
+    }
+    
+    // Выводим результаты
+    std::cout << "Максимальный элемент в A: " << *maxPtrA << ", его положение: " << (maxPtrA - A) << std::endl;
+    std::cout << "Максимальный элемент в B: " << *maxPtrB << ", его положение: " << (maxPtrB - B) << std::endl;
+    
+    // Сравниваем суммы и выводим результат
+    if (sumA < sumB) {
+        std::cout << "Сумма элементов второй части массива A меньше" << std::endl;
+    } else {
+        std::cout << "Сумма элементов второй части массива B меньше" << std::endl;
+    }
+    
+    return 0;
+}

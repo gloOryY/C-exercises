@@ -1,0 +1,61 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+int array_zero(int M[], int SIZE) {
+    int zero_index = 0;
+    for (int i = 1; i < SIZE; i++) {
+        if (M[i] == 0) {
+            zero_index = i;
+            break;
+        }
+    }
+    return zero_index;
+}
+
+#define N1 7
+#define N2 10
+
+int main()
+{
+    int A[N1]={1,2,45,12,0,23,99}, B[N2]={32, 12,76,0,11,67,8,9,10,2};
+    
+    cout << "Array A: ";
+    for (int i = 0; i < N1; i++) {
+        cout << A[i] << " ";
+    }
+    
+    cout << "\n" << "Array B: ";
+    for (int i = 0; i < N2; i++) {
+        cout << B[i] << " ";
+    }
+    
+    int indexA = array_zero(A, N1);
+    int indexB = array_zero(B, N2);
+    
+    int a1, a2, b1, b2;
+    
+    for (int i = 0 ; i < N1; i++) {
+        if (i< indexA){
+            a1 += A[i];
+        } else if (i> indexA){
+            a2 += A[i];
+        }
+            
+    }
+    for (int i = 0; i < N2; i++) {
+        if (i< indexB){
+            b1 += B[i]; 
+        } else if (i> indexB){
+            b2 += B[i];
+        }
+    }
+    
+    cout << "\nA1 = " << a1 << "\nA2 = " << a2 << "\nB1 = " << b1 << "\nB2 = " << b2  << endl;
+    
+    
+    return 0;
+}
+
+    return 0;
+}
