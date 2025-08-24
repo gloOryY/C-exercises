@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main(){
+char a;
+int b;
+scanf("%c", &a);
+b=a;
+if (b>=48 && b<=57) {
+    printf("цифра");}
+if  (b>=65 && b<=90) {
+    printf("латинская буква");}
+if  (b>=97 && b<=122) {
+    printf("латинская буква");}
+return 0;}

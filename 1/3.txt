@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main() {
+    int num;
+    scanf("%d", &num);
+    int del;
+    scanf("%d", &del);
+    int result = 0, tmp, ten = 1;
+    for(;num != 0; num /= 10) {
+        tmp = num % 10;
+        if (tmp != del) {
+            result = tmp * ten + result;
+            ten *= 10;
+        }
+    }
+    printf("%d", result);
+    return 0;
+}
